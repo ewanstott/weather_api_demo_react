@@ -10,16 +10,19 @@ import Footer from "./components/Footer";
 //WRITE THIS OUT AGAIN
 
 class App extends Component {
-  state = {};
+  // state = {};
+  state = {
+    weather: null,
+    city: "", // Add a city property to the state
+  };
 
   // invoked immediately after a component is inserted into the DOM, making it suitable for performing actions such as data fetching or setting up subscriptions.
   async componentDidMount() {
     const { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=Vancouver,Canada&appid=adef24c0d24a95065818997a98ddd457
+      `https://api.openweathermap.org/data/2.5/weather?q=Vancouver,Canada&units=metric&appid=adef24c0d24a95065818997a98ddd457
       `
-      // console.log(data);
     );
-
+    console.log(data);
     //Use forecast URL
     //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
