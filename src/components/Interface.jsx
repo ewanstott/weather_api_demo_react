@@ -14,7 +14,9 @@ class Interface extends Component {
     // this.setState(city);
     // const { city } = this.props
     // Call the function passed from the parent component
-    this.props.getWeatherData(this.state.city);
+
+    // this.props.getWeatherData(this.state.city);
+    console.log(this.onGetWeatherClick);
   };
 
   render() {
