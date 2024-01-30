@@ -7,13 +7,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-//WRITE THIS OUT AGAIN
-
 class App extends Component {
-  // state = {};
   state = {
     weather: null,
-    city: "London", // Add a city property to the state
+    city: "London", // Default city
   };
 
   onInput = (e) => {
@@ -22,15 +19,9 @@ class App extends Component {
   };
 
   onGetWeatherClick = () => {
-    // this.setState(city);
-    // const { city } = this.props
-    // Call the function passed from the parent component
-
-    // this.props.getWeatherData(this.state.city);
     this.getWeatherData();
   };
 
-  // invoked immediately after a component is inserted into the DOM, making it suitable for performing actions such as data fetching or setting up subscriptions.
   getWeatherData = async () => {
     const { data } = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=adef24c0d24a95065818997a98ddd457
