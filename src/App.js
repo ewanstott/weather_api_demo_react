@@ -13,20 +13,36 @@ class App extends Component {
   // state = {};
   state = {
     weather: null,
-    city: "", // Add a city property to the state
+    city: "London", // Add a city property to the state
+  };
+
+  onInput = (e) => {
+    this.setState({ city: e.target.value });
+    console.log(e.target.value);
+  };
+
+  onGetWeatherClick = () => {
+    // this.setState(city);
+    // const { city } = this.props
+    // Call the function passed from the parent component
+
+    // this.props.getWeatherData(this.state.city);
+    this.getWeatherData();
   };
 
   // invoked immediately after a component is inserted into the DOM, making it suitable for performing actions such as data fetching or setting up subscriptions.
-  async componentDidMount() {
+  getWeatherData = async () => {
     const { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=Vancouver,Canada&units=metric&appid=adef24c0d24a95065818997a98ddd457
-      `
+      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&appid=adef24c0d24a95065818997a98ddd457
+    `
     );
     console.log(data);
-    //Use forecast URL
-    //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
     this.setState({ weather: data }); //store weather data in state above ^^
+  };
+
+  async componentDidMount() {
+    this.getWeatherData();
   }
 
   render() {
@@ -36,7 +52,11 @@ class App extends Component {
       <>
         <Header />
         {this.state.weather ? (
-          <Interface weather={this.state.weather} /> //send weather into interface component (passing the weather property from the component's state (this.state.weather) as a prop to another component. It allows the child component to access and use the weather data from the parent component's state. )
+          <Interface
+            weather={this.state.weather}
+            onInput={this.onInput}
+            onGetWeatherClick={this.onGetWeatherClick}
+          /> //send weather into interface component (passing the weather property from the component's state (this.state.weather) as a prop to another component. It allows the child component to access and use the weather data from the parent component's state. )
         ) : (
           <Spinner />
         )}

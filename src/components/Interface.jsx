@@ -5,20 +5,6 @@ import axios from "axios";
 class Interface extends Component {
   state = { city: "", weather: null };
 
-  onInput = (e) => {
-    this.setState({ city: e.target.value });
-    console.log(e.target.value);
-  };
-
-  onGetWeatherClick = () => {
-    // this.setState(city);
-    // const { city } = this.props
-    // Call the function passed from the parent component
-
-    // this.props.getWeatherData(this.state.city);
-    console.log(this.onGetWeatherClick);
-  };
-
   render() {
     const { weather } = this.props;
     // console.log(this.props);
@@ -30,10 +16,9 @@ class Interface extends Component {
         <input
           type="text"
           placeholder="Enter city name"
-          value={this.state.city}
-          onChange={this.onInput}
+          onChange={this.props.onInput}
         />
-        <button onClick={this.onGetWeatherClick}>Get Weather</button>
+        <button onClick={this.props.onGetWeatherClick}>Get Weather</button>
         <>
           <div className="card">
             <h2>Location: {weather.name}</h2>
